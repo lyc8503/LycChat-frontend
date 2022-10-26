@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import LoginPage from "./containers/LoginPage";
+import {useRoutes} from "react-router-dom";
+import routes from "./routes";
+
 
 function App() {
   return (
     <div className="App">
-      <LoginPage />
+      {useRoutes(routes)}
     </div>
   );
 }
