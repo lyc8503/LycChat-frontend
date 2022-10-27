@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import LoginForm from "./components/Form";
-import {Navigate} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import {message} from "antd";
 import {getSession, postSession, PostSessionRequest} from "../../request/session";
 
@@ -42,7 +42,7 @@ function LoginPage() {
         isLoggedIn && <Navigate to="/main"/>
       }
 
-      <a>点此注册账号</a>
+      <NavLink to="/register">点此注册新账号</NavLink>
 
     </div>
   )
