@@ -1,5 +1,5 @@
 import {MenuDataItem, PageContainer, ProCard, ProLayout, ProSettings} from "@ant-design/pro-components";
-import { Button, Divider, Dropdown, Input } from "antd";
+import {Button, Divider, Dropdown, Input} from "antd";
 import {
   CaretDownFilled,
   DoubleRightOutlined,
@@ -10,8 +10,8 @@ import {
   SearchOutlined,
 } from '@ant-design/icons';
 
-import { css } from '@emotion/css';
-import {useState} from "react";
+import {css} from '@emotion/css';
+import React, {useState} from "react";
 
 
 const Item: React.FC<{ children: React.ReactNode }> = (props) => (
@@ -22,6 +22,7 @@ const Item: React.FC<{ children: React.ReactNode }> = (props) => (
       cursor: pointer;
       line-height: 22px;
       margin-bottom: 8px;
+
       &:hover {
         color: #1890ff;
       }
@@ -40,6 +41,8 @@ const Item: React.FC<{ children: React.ReactNode }> = (props) => (
 );
 
 const List: React.FC<{ title: string; style?: React.CSSProperties }> = (props) => {
+
+
   return (
     <div
       style={{
@@ -79,36 +82,89 @@ function MainPage() {
     splitMenus: true,
   };
 
+  const appList = [
+    {
+      icon: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+      title: 'Ant Design',
+      desc: '杭州市较知名的 UI 设计语言',
+      url: 'https://ant.design',
+    },
+    {
+      icon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+      title: 'AntV',
+      desc: '蚂蚁集团全新一代数据可视化解决方案',
+      url: 'https://antv.vision/',
+      target: '_blank',
+    },
+    {
+      icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
+      title: 'Pro Components',
+      desc: '专业级 UI 组件库',
+      url: 'https://procomponents.ant.design/',
+    },
+    {
+      icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
+      title: 'umi',
+      desc: '插件化的企业级前端应用框架。',
+      url: 'https://umijs.org/zh-CN/docs',
+    },
+
+    {
+      icon: 'https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png',
+      title: 'qiankun',
+      desc: '可能是你见过最完善的微前端解决方案🧐',
+      url: 'https://qiankun.umijs.org/',
+    },
+    {
+      icon: 'https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg',
+      title: '语雀',
+      desc: '知识创作与分享工具',
+      url: 'https://www.yuque.com/',
+    },
+    {
+      icon: 'https://gw.alipayobjects.com/zos/rmsportal/LFooOLwmxGLsltmUjTAP.svg',
+      title: 'Kitchen ',
+      desc: 'Sketch 工具集',
+      url: 'https://kitchen.alipay.com/',
+    },
+    {
+      icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
+      title: 'dumi',
+      desc: '为组件开发场景而生的文档工具',
+      url: 'https://d.umijs.org/zh-CN',
+    },
+  ]
+
+
   const [pathname, setPathname] = useState('/list/sub-page/sub-sub-page1');
 
   return (
     <div
-      id="test-pro-layout"
       style={{
         height: '100vh',
       }}
     >
       <ProLayout
-        bgLayoutImgList={[
-          {
-            src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
-            left: 85,
-            bottom: 100,
-            height: '303px',
-          },
-          {
-            src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
-            bottom: -68,
-            right: -45,
-            height: '303px',
-          },
-          {
-            src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',
-            bottom: 0,
-            left: 0,
-            width: '331px',
-          },
-        ]}
+        // bgLayoutImgList={[
+        //   {
+        //     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
+        //     left: 85,
+        //     bottom: 100,
+        //     height: '303px',
+        //   },
+        //   {
+        //     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
+        //     bottom: -68,
+        //     right: -45,
+        //     height: '303px',
+        //   },
+        //   {
+        //     src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',
+        //     bottom: 0,
+        //     left: 0,
+        //     width: '331px',
+        //   },
+        // ]}
         {...{
           route: {
             path: '/',
@@ -201,58 +257,7 @@ function MainPage() {
           location: {
             pathname: '/',
           },
-          appList: [
-            {
-              icon: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-              title: 'Ant Design',
-              desc: '杭州市较知名的 UI 设计语言',
-              url: 'https://ant.design',
-            },
-            {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
-              title: 'AntV',
-              desc: '蚂蚁集团全新一代数据可视化解决方案',
-              url: 'https://antv.vision/',
-              target: '_blank',
-            },
-            {
-              icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-              title: 'Pro Components',
-              desc: '专业级 UI 组件库',
-              url: 'https://procomponents.ant.design/',
-            },
-            {
-              icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
-              title: 'umi',
-              desc: '插件化的企业级前端应用框架。',
-              url: 'https://umijs.org/zh-CN/docs',
-            },
-
-            {
-              icon: 'https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png',
-              title: 'qiankun',
-              desc: '可能是你见过最完善的微前端解决方案🧐',
-              url: 'https://qiankun.umijs.org/',
-            },
-            {
-              icon: 'https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg',
-              title: '语雀',
-              desc: '知识创作与分享工具',
-              url: 'https://www.yuque.com/',
-            },
-            {
-              icon: 'https://gw.alipayobjects.com/zos/rmsportal/LFooOLwmxGLsltmUjTAP.svg',
-              title: 'Kitchen ',
-              desc: 'Sketch 工具集',
-              url: 'https://kitchen.alipay.com/',
-            },
-            {
-              icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
-              title: 'dumi',
-              desc: '为组件开发场景而生的文档工具',
-              url: 'https://d.umijs.org/zh-CN',
-            },
-          ],
+          appList: appList,
         }}
         location={{
           pathname,
@@ -268,7 +273,7 @@ function MainPage() {
         actionsRender={(props) => {
           if (props.isMobile) return [];
           return [
-            props.layout !== 'side' && document.body.clientWidth > 1400 ? (
+            props.layout !== 'side' && document.body.clientWidth > 1000 ? (
               <div
                 key="SearchOutlined"
                 aria-hidden
@@ -306,12 +311,13 @@ function MainPage() {
                 />
               </div>
             ) : undefined,
-            <InfoCircleFilled key="InfoCircleFilled" />,
-            <QuestionCircleFilled key="QuestionCircleFilled" />,
-            <GithubFilled key="GithubFilled" />,
+            <InfoCircleFilled key="InfoCircleFilled"/>,
+            <QuestionCircleFilled key="QuestionCircleFilled"/>,
+            <GithubFilled key="GithubFilled"/>,
           ];
         }}
         headerContentRender={(_, defaultDom) => {
+
           if (document.body.clientWidth < 1400) {
             return defaultDom;
           }
@@ -345,9 +351,9 @@ function MainPage() {
                         borderRadius: '0 0 6px 6px',
                       }}
                     >
-                      <div style={{ display: 'flex' }}>
-                        <div style={{ flex: 1 }}>
-                          <List title="金融解决方案" />
+                      <div style={{display: 'flex'}}>
+                        <div style={{flex: 1}}>
+                          <List title="金融解决方案"/>
                           <List
                             title="其他解决方案"
                             style={{
@@ -382,12 +388,13 @@ function MainPage() {
                                   margin-top: 4px;
                                   display: flex;
                                   cursor: pointer;
+
                                   &:hover {
                                     background-color: rgba(0, 0, 0, 0.03);
                                   }
                                 `}
                               >
-                                <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg" />
+                                <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg"/>
                                 <div
                                   style={{
                                     marginInlineStart: 14,
@@ -432,34 +439,24 @@ function MainPage() {
                     }}
                     className={css`
                       padding: 0 16px;
+
                       &:hover {
                         background-color: rgba(0, 0, 0, 0.03);
                       }
                     `}
                   >
                     <span> 企业级资产中心</span>
-                    <CaretDownFilled />
+                    <CaretDownFilled/>
                   </div>
                 </Dropdown>
               </div>
             </>
           );
         }}
-        menuFooterRender={(props) => {
-          if (props?.collapsed) return undefined;
-          return (
-            <div
-              style={{
-                textAlign: 'center',
-                paddingBlockStart: 12,
-              }}
-            >
-              <div>© 2021 Made with love</div>
-              <div>by Ant Design</div>
-            </div>
-          );
-        }}
+
+
         onMenuHeaderClick={(e) => console.log(e)}
+
         menuItemRender={(item, dom) => (
           <div
             onClick={() => {
@@ -474,18 +471,18 @@ function MainPage() {
         <PageContainer>
           <ProCard
             style={{
-              height: '100vh',
-              minHeight: 800,
+              overflowY: 'auto',
+              // height: '80vh',
+              // minHeight: 800,
             }}
           >
-            <div />
+            <div>Hello!</div>
           </ProCard>
         </PageContainer>
       </ProLayout>
     </div>
   )
 }
-
 
 
 export default MainPage
