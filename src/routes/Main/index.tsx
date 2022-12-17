@@ -41,8 +41,6 @@ const Item: React.FC<{ children: React.ReactNode }> = (props) => (
 );
 
 const List: React.FC<{ title: string; style?: React.CSSProperties }> = (props) => {
-
-
   return (
     <div
       style={{
@@ -167,16 +165,16 @@ function MainPage() {
         // ]}
         {...{
           route: {
-            path: '/',
+            path: '/main',
             routes: [
               {
-                path: '/welcome',
+                path: '/main/welcome',
                 name: '欢迎',
                 // icon: <SmileFilled />,
                 component: './Welcome',
               },
               {
-                path: '/admin',
+                path: '/main/admin',
                 name: '管理页',
                 // icon: <CrownFilled />,
                 access: 'canAdmin',
@@ -316,147 +314,7 @@ function MainPage() {
             <GithubFilled key="GithubFilled"/>,
           ];
         }}
-        headerContentRender={(_, defaultDom) => {
-
-          if (document.body.clientWidth < 1400) {
-            return defaultDom;
-          }
-          if (_.isMobile) return defaultDom;
-          return (
-            <>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginInlineEnd: 52,
-                }}
-              >
-                <Divider
-                  style={{
-                    height: '1.5em',
-                  }}
-                  type="vertical"
-                />
-                <Dropdown
-                  placement="bottom"
-                  overlay={
-                    <div
-                      style={{
-                        padding: '32px 40px',
-                        backgroundColor: '#fff',
-                        width: 'calc(100vw - 4px)',
-                        height: '307px',
-                        boxShadow:
-                          '0 8px 16px 0 rgba(0,0,0,0.03), 0 4px 8px 0 rgba(25,15,15,0.07), 0 2px 4px 0 rgba(0,0,0,0.08)',
-                        borderRadius: '0 0 6px 6px',
-                      }}
-                    >
-                      <div style={{display: 'flex'}}>
-                        <div style={{flex: 1}}>
-                          <List title="金融解决方案"/>
-                          <List
-                            title="其他解决方案"
-                            style={{
-                              marginBlockStart: 32,
-                            }}
-                          />
-                        </div>
-
-                        <div
-                          style={{
-                            width: '308px',
-                            borderInlineStart: '1px solid rgba(0,0,0,0.06)',
-                            paddingInlineStart: 16,
-                          }}
-                        >
-                          <div
-                            className={css`
-                              font-size: 14px;
-                              color: rgba(0, 0, 0, 0.45);
-                              line-height: 22px;
-                            `}
-                          >
-                            热门产品
-                          </div>
-                          {new Array(3).fill(1).map((name, index) => {
-                            return (
-                              <div
-                                key={index}
-                                className={css`
-                                  border-radius: 4px;
-                                  padding: 16px;
-                                  margin-top: 4px;
-                                  display: flex;
-                                  cursor: pointer;
-
-                                  &:hover {
-                                    background-color: rgba(0, 0, 0, 0.03);
-                                  }
-                                `}
-                              >
-                                <img src="https://gw.alipayobjects.com/zos/antfincdn/6FTGmLLmN/bianzu%25252013.svg"/>
-                                <div
-                                  style={{
-                                    marginInlineStart: 14,
-                                  }}
-                                >
-                                  <div
-                                    className={css`
-                                      font-size: 14px;
-                                      color: rgba(0, 0, 0, 0.85);
-                                      line-height: 22px;
-                                    `}
-                                  >
-                                    Ant Design
-                                  </div>
-                                  <div
-                                    className={css`
-                                      font-size: 12px;
-                                      color: rgba(0, 0, 0, 0.45);
-                                      line-height: 20px;
-                                    `}
-                                  >
-                                    杭州市较知名的 UI 设计语言
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  }
-                >
-                  <div
-                    style={{
-                      color: 'rgba(0, 0, 0, 0.85)',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      gap: 4,
-                      alignItems: 'center',
-                      minWidth: '180px',
-                    }}
-                    className={css`
-                      padding: 0 16px;
-
-                      &:hover {
-                        background-color: rgba(0, 0, 0, 0.03);
-                      }
-                    `}
-                  >
-                    <span> 企业级资产中心</span>
-                    <CaretDownFilled/>
-                  </div>
-                </Dropdown>
-              </div>
-            </>
-          );
-        }}
-
-
         onMenuHeaderClick={(e) => console.log(e)}
-
         menuItemRender={(item, dom) => (
           <div
             onClick={() => {
