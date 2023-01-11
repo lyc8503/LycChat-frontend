@@ -1,344 +1,76 @@
-import {MenuDataItem, PageContainer, ProCard, ProLayout, ProSettings} from "@ant-design/pro-components";
-import {Button, Divider, Dropdown, Input} from "antd";
+
+import React, { useState } from 'react';
 import {
-  CaretDownFilled,
-  DoubleRightOutlined,
-  GithubFilled,
-  InfoCircleFilled,
-  PlusCircleFilled,
-  QuestionCircleFilled,
-  SearchOutlined,
+  DesktopOutlined,
+  FileOutlined,
+  PieChartOutlined,
+  TeamOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Breadcrumb, Layout, Menu} from 'antd';
 
-import {css} from '@emotion/css';
-import React, {useState} from "react";
+const { Header, Content, Footer, Sider } = Layout;
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+  } as MenuItem;
+}
+
+const items: MenuItem[] = [
+  getItem('Option 1', '1', <PieChartOutlined />),
+  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('User', 'sub1', <UserOutlined />, [
+    getItem('Tom', '3'),
+    getItem('Bill', '4'),
+    getItem('Alex', '5'),
+  ]),
+  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+  getItem('Files', '9', <FileOutlined />),
+];
 
 
-const Item: React.FC<{ children: React.ReactNode }> = (props) => (
-  <div
-    className={css`
-      color: rgba(0, 0, 0, 0.45);
-      font-size: 14px;
-      cursor: pointer;
-      line-height: 22px;
-      margin-bottom: 8px;
-
-      &:hover {
-        color: #1890ff;
-      }
-    `}
-    style={{
-      width: '33.33%',
-    }}
-  >
-    {props.children}
-    <DoubleRightOutlined
-      style={{
-        marginInlineStart: 4,
-      }}
-    />
-  </div>
-);
-
-const List: React.FC<{ title: string; style?: React.CSSProperties }> = (props) => {
-  return (
-    <div
-      style={{
-        width: '100%',
-        ...props.style,
-      }}
-    >
-      <div
-        style={{
-          fontSize: 16,
-          color: 'rgba(0,0,0,0.85)',
-          lineHeight: '24px',
-          fontWeight: 500,
-          marginBlockEnd: 16,
-        }}
-      >
-        {props.title}
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
-      >
-        {new Array(6).fill(1).map((_, index) => {
-          return <Item key={index}>具体的解决方案-{index}</Item>;
-        })}
-      </div>
-    </div>
-  );
-};
 
 function MainPage() {
-  const settings: ProSettings | undefined = {
-    fixSiderbar: true,
-    layout: 'mix',
-    splitMenus: true,
-  };
-
-  const appList = [
-    {
-      icon: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-      title: 'Ant Design',
-      desc: '杭州市较知名的 UI 设计语言',
-      url: 'https://ant.design',
-    },
-    {
-      icon: 'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
-      title: 'AntV',
-      desc: '蚂蚁集团全新一代数据可视化解决方案',
-      url: 'https://antv.vision/',
-      target: '_blank',
-    },
-    {
-      icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-      title: 'Pro Components',
-      desc: '专业级 UI 组件库',
-      url: 'https://procomponents.ant.design/',
-    },
-    {
-      icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
-      title: 'umi',
-      desc: '插件化的企业级前端应用框架。',
-      url: 'https://umijs.org/zh-CN/docs',
-    },
-
-    {
-      icon: 'https://gw.alipayobjects.com/zos/bmw-prod/8a74c1d3-16f3-4719-be63-15e467a68a24/km0cv8vn_w500_h500.png',
-      title: 'qiankun',
-      desc: '可能是你见过最完善的微前端解决方案🧐',
-      url: 'https://qiankun.umijs.org/',
-    },
-    {
-      icon: 'https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg',
-      title: '语雀',
-      desc: '知识创作与分享工具',
-      url: 'https://www.yuque.com/',
-    },
-    {
-      icon: 'https://gw.alipayobjects.com/zos/rmsportal/LFooOLwmxGLsltmUjTAP.svg',
-      title: 'Kitchen ',
-      desc: 'Sketch 工具集',
-      url: 'https://kitchen.alipay.com/',
-    },
-    {
-      icon: 'https://img.alicdn.com/tfs/TB1zomHwxv1gK0jSZFFXXb0sXXa-200-200.png',
-      title: 'dumi',
-      desc: '为组件开发场景而生的文档工具',
-      url: 'https://d.umijs.org/zh-CN',
-    },
-  ]
-
-
-  const [pathname, setPathname] = useState('/list/sub-page/sub-sub-page1');
 
   return (
-    <div
-      style={{
-        height: '100vh',
-      }}
-    >
-      <ProLayout
-        // bgLayoutImgList={[
-        //   {
-        //     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
-        //     left: 85,
-        //     bottom: 100,
-        //     height: '303px',
-        //   },
-        //   {
-        //     src: 'https://img.alicdn.com/imgextra/i2/O1CN01O4etvp1DvpFLKfuWq_!!6000000000279-2-tps-609-606.png',
-        //     bottom: -68,
-        //     right: -45,
-        //     height: '303px',
-        //   },
-        //   {
-        //     src: 'https://img.alicdn.com/imgextra/i3/O1CN018NxReL1shX85Yz6Cx_!!6000000005798-2-tps-884-496.png',
-        //     bottom: 0,
-        //     left: 0,
-        //     width: '331px',
-        //   },
-        // ]}
-        {...{
-          route: {
-            path: '/main',
-            routes: [
-              {
-                path: '/main/welcome',
-                name: '欢迎',
-                // icon: <SmileFilled />,
-                component: './Welcome',
-              },
-              {
-                path: '/main/admin',
-                name: '管理页',
-                // icon: <CrownFilled />,
-                access: 'canAdmin',
-                component: './Admin',
-                routes: [
-                  {
-                    path: '/admin/sub-page1',
-                    name: '一级页面',
-                    icon: 'https://gw.alipayobjects.com/zos/antfincdn/upvrAjAPQX/Logo_Tech%252520UI.svg',
-                    component: './Welcome',
-                  },
-                  {
-                    path: '/admin/sub-page2',
-                    name: '二级页面',
-                    // icon: <CrownFilled />,
-                    component: './Welcome',
-                  },
-                  {
-                    path: '/admin/sub-page3',
-                    name: '三级页面',
-                    // icon: <CrownFilled />,
-                    component: './Welcome',
-                  },
-                ],
-              },
-              {
-                name: '列表页',
-                // icon: <TabletFilled />,
-                path: '/list',
-                component: './ListTableList',
-                routes: [
-                  {
-                    path: '/list/sub-page',
-                    name: '列表页面',
-                    // icon: <CrownFilled />,
-                    routes: [
-                      {
-                        path: 'sub-sub-page1',
-                        name: '一一级列表页面',
-                        // icon: <CrownFilled />,
-                        component: './Welcome',
-                      },
-                      {
-                        path: 'sub-sub-page2',
-                        name: '一二级列表页面',
-                        // icon: <CrownFilled />,
-                        component: './Welcome',
-                      },
-                      {
-                        path: 'sub-sub-page3',
-                        name: '一三级列表页面',
-                        // icon: <CrownFilled />,
-                        component: './Welcome',
-                      },
-                    ],
-                  },
-                  {
-                    path: '/list/sub-page2',
-                    name: '二级列表页面',
-                    // icon: <CrownFilled />,
-                    component: './Welcome',
-                  },
-                  {
-                    path: '/list/sub-page3',
-                    name: '三级列表页面',
-                    // icon: <CrownFilled />,
-                    component: './Welcome',
-                  },
-                ],
-              },
-              {
-                path: 'https://ant.design',
-                name: 'Ant Design 官网外链',
-                // icon: <ChromeFilled />,
-              },
-            ],
-          },
-          location: {
-            pathname: '/',
-          },
-          appList: appList,
-        }}
-        location={{
-          pathname,
-        }}
-        menu={{
-          type: 'group',
-        }}
-        avatarProps={{
-          src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
-          size: 'small',
-          title: '七妮妮',
-        }}
-        actionsRender={(props) => {
-          if (props.isMobile) return [];
-          return [
-            props.layout !== 'side' && document.body.clientWidth > 1000 ? (
-              <div
-                key="SearchOutlined"
-                aria-hidden
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  marginInlineEnd: 24,
-                }}
-                onMouseDown={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                }}
-              >
-                <Input
-                  style={{
-                    borderRadius: 4,
-                    marginInlineEnd: 12,
-                    backgroundColor: 'rgba(0,0,0,0.03)',
-                  }}
-                  prefix={
-                    <SearchOutlined
-                      style={{
-                        color: 'rgba(0, 0, 0, 0.15)',
-                      }}
-                    />
-                  }
-                  placeholder="搜索方案"
-                  bordered={false}
-                />
-                <PlusCircleFilled
-                  style={{
-                    color: 'var(--ant-primary-color)',
-                    fontSize: 24,
-                  }}
-                />
-              </div>
-            ) : undefined,
-            <InfoCircleFilled key="InfoCircleFilled"/>,
-            <QuestionCircleFilled key="QuestionCircleFilled"/>,
-            <GithubFilled key="GithubFilled"/>,
-          ];
-        }}
-        onMenuHeaderClick={(e) => console.log(e)}
-        menuItemRender={(item, dom) => (
-          <div
-            onClick={() => {
-              setPathname(item.path || '/welcome');
-            }}
-          >
-            {dom}
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider theme="dark" collapsed={true} collapsedWidth="3vw">
+        <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
+        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+      </Sider>
+
+      <Layout className="site-layout">
+
+        <Sider theme="light" collapsed={false}>
+          <Menu defaultSelectedKeys={['1']} mode="inline" items={items} />
+        </Sider>
+
+        <Content style={{ margin: '0 16px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div style={{ padding: 24, minHeight: 360 }}>
+            Bill is a cat.
           </div>
-        )}
-        {...settings}
-      >
-        <PageContainer>
-          <ProCard
-            style={{
-              overflowY: 'auto',
-              // height: '80vh',
-              // minHeight: 800,
-            }}
-          >
-            <div>Hello!</div>
-          </ProCard>
-        </PageContainer>
-      </ProLayout>
-    </div>
+        </Content>
+
+        <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+
+      </Layout>
+    </Layout>
   )
 }
 
