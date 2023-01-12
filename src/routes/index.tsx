@@ -8,19 +8,19 @@ import MainPage from "./Main";
 const routes = [
   {
     path: "/login",
-    element: <LoginPage />
+    element: <LoginPage/>
   },
   {
     path: "/register",
-    element: <RegisterPage />
+    element: <RegisterPage/>
   },
   {
     path: "/",
-    element: <Navigate to="/login" />
+    element: <Navigate to="/login"/>
   },
   {
-    path: "/main",
-    element: <MainPage />
+    path: "/main/*",
+    element: <MainPage/>
   }
 ]
 
