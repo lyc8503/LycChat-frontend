@@ -49,8 +49,11 @@ function getService(config: ServiceConfig = { showErrorOnPage: true, showErrorFu
 }
 
 const service = getService()
+const backgroundService = getService({
+  showErrorOnPage: false
+})
 
 // service 是默认情况的 service (在页面上显示错误), 可用 getService 传入自定义参数
 export {
-  service, getService
+  service, backgroundService, getService
 }
