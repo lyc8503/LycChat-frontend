@@ -1,4 +1,4 @@
-import {Drawer, Input, InputRef, List, Spin} from "antd";
+import {Drawer, Input, List, Spin} from "antd";
 import {LoadingOutlined, SearchOutlined} from "@ant-design/icons";
 import Avatar from "antd/lib/avatar/avatar";
 import {searchUser} from "../../../request/user";

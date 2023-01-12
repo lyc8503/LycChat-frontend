@@ -8,7 +8,7 @@ export interface PostUserRequest {
   username: string;
 }
 
-export function postUser(request: PostUserRequest, config: RequestConfig = { service: service }): Promise<undefined> {
+export function postUser(request: PostUserRequest, config: RequestConfig = {service: service}): Promise<undefined> {
   return config.service.post("/users", request)
 }
 
@@ -21,6 +21,6 @@ export interface UserVO {
 }
 
 // search users by username
-export function searchUser(request: SearchUserRequest, config: RequestConfig = { service: backgroundService }): Promise<UserVO[]> {
+export function searchUser(request: SearchUserRequest, config: RequestConfig = {service: backgroundService}): Promise<UserVO[]> {
   return config.service.get("/users/search/" + request.keyword)
 }

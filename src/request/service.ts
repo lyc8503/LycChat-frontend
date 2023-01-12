@@ -9,7 +9,7 @@ interface ServiceConfig {
   showErrorFunc?: Function
 }
 
-function getService(config: ServiceConfig = { showErrorOnPage: true, showErrorFunc: message.error }) {
+function getService(config: ServiceConfig = {showErrorOnPage: true, showErrorFunc: message.error}) {
   const service = axios.create({
     baseURL: BASE_URL
   })
