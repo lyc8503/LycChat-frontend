@@ -7,7 +7,7 @@ import {MenuInfo} from 'rc-menu/lib/interface';
 import {Navigate, useLocation, useNavigate, useRoutes} from "react-router-dom";
 import Messages from "./container/Messages";
 
-const {Header, Content, Footer, Sider} = Layout;
+const {Sider} = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 

@@ -7,7 +7,7 @@ export interface GetSessionResponse {
   username?: string
 }
 
-export function getSession(config: RequestConfig = { service: service }): Promise<GetSessionResponse> {
+export function getSession(config: RequestConfig = {service: service}): Promise<GetSessionResponse> {
   return config.service.get("/session")
 }
 
@@ -23,6 +23,6 @@ export interface PostSessionResponse {
 }
 
 
-export function postSession(request: PostSessionRequest, config: RequestConfig = { service: service }): Promise<PostSessionResponse> {
+export function postSession(request: PostSessionRequest, config: RequestConfig = {service: service}): Promise<PostSessionResponse> {
   return config.service.post("/session", request)
 }

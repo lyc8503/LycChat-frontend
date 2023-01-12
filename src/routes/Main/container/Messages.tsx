@@ -1,4 +1,4 @@
-import {Button, Input, Layout, Space, Tooltip} from "antd";
+import {Input, Layout, Tooltip} from "antd";
 import Sider from "antd/es/layout/Sider";
 import {PlusOutlined, SearchOutlined} from "@ant-design/icons";
 import AddFriendDrawer from "../components/AddFriendDrawer";
